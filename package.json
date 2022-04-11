@@ -1,0 +1,45 @@
+{
+  "name": "sign",
+
+  "version": "1.0.1",
+  "description": "for emps signing",
+  "main": "main.js",
+  "scripts": {
+    "electron": "electron .",
+    "dist":"electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuhammedMuhammed/signApp.git"
+  },
+  "author": "Muhammad Nehad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MuhammedMuhammed/signApp/issues"
+  },
+  "homepage": "https://github.com/MuhammedMuhammed/signApp#readme",
+  "dependencies": {
+    "asar": "^3.1.0",
+    "bootstrap": "^5.1.0",
+    "datatables.net": "^1.10.25",
+    "datatables.net-dt": "^1.1.0",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "electron": "^13.2.3",
+    "electron-builder": "^22.11.7"
+
+  },
+  "build": {
+    "appId": "com.sgnempapp.app",
+    "productName": "sign",
+    "target": "NSIS",
+    "directories": {
+      "output": "build"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false
+    }
+  }
+}
