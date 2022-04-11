@@ -1,16 +1,21 @@
 
-const electron = require("electron");
-const {app,BrowserWindow,autoUpdater,dialog} = electron;
+const {app,BrowserWindow,autoUpdater,dialog,globalShortcut} =require("electron");
+
+updateApp =require('update-electron-app');
+
+
 app.on('ready',()=>{
-const bwindow = new BrowserWindow({});
+
+ bwindow = new BrowserWindow({});
 bwindow.loadURL(`file:///${__dirname}/views/login.html`);
    bwindow.setMenu(null);
    createWindow(bwindow);
-   updateApp = require('update-electron-app');
+  
 
+   
    updateApp({
        // repo: 'PhiloNL/electron-hello-world', // defaults to package.json
-       updateInterval: '1 hour',
+       updateInterval: '5 minutes',
        notifyUser: true
    });
    autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
@@ -18,12 +23,13 @@ bwindow.loadURL(`file:///${__dirname}/views/login.html`);
        autoUpdater.quitAndInstall()
    })
 });
-
+app.on("window-all-closed",()=>{
+    app.quit();
+});
 const menuTemp = [
     {'label':'refresh'}
 ];
 
-const globalShortcut = electron.globalShortcut;
 function createWindow(bwindow)
 {
     globalShortcut.register('f5',()=>{

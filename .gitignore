@@ -1,3 +1,4 @@
 build/
 node_modules/
 ./url.js
+.bash_profile
