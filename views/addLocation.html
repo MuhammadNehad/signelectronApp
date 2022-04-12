@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>locations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/locations.css">
+    <script src="../js/storagedata.js"></script>
+    <script src="../js/url.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="navbar-inner" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html" id="homeHref">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="addEmployee.html" id="addEmpHref">Employees</a>
+                </li>
+                <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="addLocHref">Locations <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="roles.html" id="addLocHref">roles</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="logout">logout</a>
+                </li>
+                
+            </ul>
+            <div id="top-modal-locs">
+                <ul id="locslist" class="list-group"></ul>
+                <a class="btn w-100" id="lclisttoggle">تعديل الاماكن</a>
+            </div>
+            <!-- <div id="top-modal-traffic-locs" class="d-none">
+                <div class="card">
+        
+                    <div class="card-body">
+                      <div class="row">
+                                <div class="col">
+                                    <label for="fromLoc">من</label>
+                                <select name="fromLoc" class="form-control locations" id="fromLoc"></select>
+                                </div>
+                                <div class="col">
+                                    <label for="toLoc">الى</label>
+                                    <select name="toLoc" class="form-control locations" id="toLoc" ></select>
+        
+                                </div>
+                                <div class="col">
+        
+                                    <label id="duration"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button type="submit" class="btn" id="trlclisttoggle">check traffic</button>
+                            </div>
+                        </div>
+                </div>
+            </div> -->
+    </nav>
+    <div id="map">
+
+    </div>
+
+    <!-- <div id="top-modal-locs">
+        <ul id="locslist" class="list-group"></ul>
+        <a class="btn w-100" id="lclisttoggle">toggle</a>
+    </div> -->
+    <div class="row d-none editForm" id="editForm" >
+        <div class="card">
+            <div class="card-body">
+            <div class="row mb-1">
+                <div class="col">
+                    <input type="text" class="form-control" name="elatitude" id="elatitude" >
+
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="elngtude" id="elngtude" >
+
+                </div>
+            </div>
+        <div class="row mb-1">
+            <div class="col">
+                <input type="text" class="form-control" name="eaddress" id="eaddress" placeholder="address" >
+
+            </div>
+            <div class="col">
+                <input type="checkbox" name="isParent" id="eisParent" ><small>is Parent</small>
+
+            </div>
+            <div class="col">
+                <input type="number" placeholder="radius" class="form-control" name="radius" id="eradius" >
+
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col w-50">
+                <button type="submit" class="btn btn-outline-success w-100 text-truncate text-nowrap" id="esaveLoc"><small> update</small></button>
+            </div>
+            <div class="col w-50">
+
+                <button type="submit" class="btn btn-outline-danger w-100 text-truncate text-nowrap" id="ecancelupdateLoc"><small>cancel</small></button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div id="bottom-Modal-employees" class="d-none" >
+        <div class="card">
+            <div class="card-header">
+                تسجيل الاماكن للموظفين
+            </div>
+            <div class="card-body">
+              <div class="row">
+                        <div class="col">
+                        <select name="employees" class="form-control" id="employees"></select>
+                        </div>
+                        <div class="col">
+                            <select name="locations" class="form-control" id="locations" ></select>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn" id="update_emp">add</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="bottom-Modal-locations" >
+        <div class="card">
+            <div class="card-header">
+                اضافة اماكن جديدة
+            </div>
+            <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" name="latitude" id="latitude" >
+
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="lngtude" id="lngtude" >
+
+                </div>
+            </div>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" name="address" id="address" placeholder="address" >
+
+            </div>
+            <div class="col-sm">
+                <input type="checkbox" name="isParent" id="isParent" > is Parent
+
+            </div>
+            <div class="col-sm">
+                <input type="number" placeholder="radius" class="form-control" name="radius" id="radius" >
+
+            </div>
+        </div>
+        <div class="row mb-2">
+            <button type="submit" class="btn" id="saveLoc">save</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script src="../js/httpRequest.js"></script>
+    <script src="../js/locations.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+
+
+#map {
+    height: 100%;
+  }
+  
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  /* #bottom-Modal-employees{
+      position: fixed;
+      bottom: 0;
+      height: 15%;
+      width: 50%;
+      z-index: 1000;
+        background: white;   
+        -webkit-transition: all 0.5s ease-in-out; 
+        transition: all 0.5s ease-in-out ;
+
+  } */
+
+  #bottom-Modal-locations{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 0%;
+    width: 40%;
+    z-index: 1000;
+      background: white;   
+      -webkit-transition: all 0.5s ease-in-out; 
+      transition: all 0.5s ease-in-out ;
+
+}
+#top-modal-locs {
+  position: absolute;
+  top: 100%;
+  right: 5%;
+  z-index: 1111;
+  --bs-bg-opacity: 1;
+  background: rgba(248,249,250,var(--bs-bg-opacity));
+  width: 30%;
+  padding: 2px;
+}
+
+#top-modal-traffic-locs{
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  z-index: 1111;
+  --bs-bg-opacity: 1;
+  background: rgba(248,249,250,var(--bs-bg-opacity));
+  width: 15%;
+  padding: 2px;
+}
+
+#locslist{
+
+  position: relative;
+
+  height: 0%;
+  -webkit-transition: all 0.5s ease-in-out; 
+  transition: all 0.5s ease-in-out ;
+  overflow: hidden;
+}
+#locslist:target{
+  overflow: scroll;
+  height: 50%;
+}
+#bottom-Modal-locations:target {
+    height: 20%;
+  }
+
+@media screen and (max-height:850px) {
+  #bottom-Modal-locations:target{
+    height: 30%;
+    
+  }
+  /* #bottom-Modal-employees{
+    height: calc(100vh/5);
+  } */
+}
+
+
+@media screen and (max-height:600px) {
+  #bottom-Modal-locations:target{
+    height: 25%;
+    
+  }
+  /* #bottom-Modal-employees{
+    height: calc(100vh/4);
+  } */
+}
+
+@media screen and (max-height:350px) {
+  #bottom-Modal-locations:target{
+    height: 25%;
+    
+  }
+  #bottom-Modal-employees{
+    height: calc(100vh/2);
+  }
+}
