@@ -2,31 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    
-        <script src="../js/url.js"></script>
-    
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>home</title>
+  
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../libraries/datatables/jquery.dataTables.min.css">
+  <link href="../libraries/bootstrap/jsdeliver.bootstrap.min.css" rel="stylesheet"
+    >
+  <link rel="stylesheet" href="../libraries/fontawesome_all.css" />
+  <script src="../js/url.js"></script>
+  <script src="../js/SweetAlert.js"></script>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">      
-        <div class="navbar-inner" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#" id="homeHref">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="addEmployee.html" id="addEmpHref">Employees</a>
-            </li>
-            <!-- <li class="nav-item dropdown">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navbar-inner" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#" id="homeHref">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="addEmployee.html" id="addEmpHref">Employees</a>
+        </li>
+        <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
               </a>
@@ -37,80 +38,92 @@
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
             </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="addLocation.html" id="addLocHref"> Locations</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="roles.html" id="addLocHref">roles</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="logout">logout</a>
-          </li>
-          
-          </ul>
-  
-      </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-              <div class="row">
-                <input type="text" onchange="getEmpsData();" name="empName" id="empName" placeholder="Search by name" class="form-control m-5"/>
+        <li class="nav-item">
+          <a class="nav-link" href="addLocation.html" id="addLocHref"> Locations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="roles.html" id="addLocHref">roles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="logout">logout</a>
+        </li>
 
-              </div>
-              <div class="row">
-                <div class="col">
-                  <input type="date" onchange="getEmpsData();" name="fromdate" id="fromdate" class="form-control"/>
-                </div>
-                <div class="col">
-                  <input type="date" name="todate" onchange="getEmpsData();" id="todate" class="form-control"/>
-                </div>
-                <select name="period" class="form-control" onchange="getEmpsData();" id="period">
-                  <option value="day">per day</option>
-                <option value="month">per month</option>
-                <option value="year">per year</option></select>
-              </div>  
-              <div class="row">
-                    
-                    <table id="employeesTableTimeable" class="display nowrap">
-                        <thead>
-                            <tr>
-                                <th>address</th>
-                                <th> name</th>
-                                <th>Phone</th>
-                                <th>email</th>
-                                <th>from</th>
-                                <th>to</th>
-                                <th>تاخير (بالدقايق)</th>
-                                <th>زيادات (بالدقايق)</th>
-                                <th>total hours</th>
-                                <th>date</th>
+      </ul>
 
-                            </tr>
-                        </thead>
-                        <tbody id="eTBody">
+  </nav>
+  <div class="container-fluid m-2">
+    <div class="row">
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+      <div class="row">
+   
+          <label for="empName">Employee Name</label>
+        <input type="text" onchange="getEmpsData();" name="empName" placeholder="Search by name" id="empName"
+          class="form-control " />
+        
         </div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
-<script src="../js/httpRequest.js"></script>
-<script src="../js/storagedata.js"></script>
-<script src="../js/index.js"></script>
+
+      <div class="row">
+        <div class="col">
+          <label for="fromdate">from
+          <input type="date" onchange="getEmpsData();" name="fromdate" id="fromdate" class="form-control" />
+        </label> </div>
+        <div class="col">
+          <label for="todate">to
+          <input type="date" name="todate" onchange="getEmpsData();" id="todate" class="form-control" />
+        </label></div>
+        <div class="col">
+          <label for="period">period
+          <select name="period" class="form-control" onchange="getEmpsData();" id="period">
+            <option value="day">per day</option>
+            <option value="month">per month</option>
+            <option value="year">per year</option>
+          </select>
+        </label>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+
+        <table id="employeesTableTimeable" class="display nowrap">
+          <thead>
+            <tr>
+              <th>address</th>
+              <th> name</th>
+              <th>Phone</th>
+              <th>email</th>
+              <th>from</th>
+              <th>to</th>
+              <th>تاخير (بالدقايق)</th>
+              <th>زيادات (بالدقايق)</th>
+              <th>total hours</th>
+              <th>date</th>
+
+            </tr>
+          </thead>
+          <tbody id="eTBody">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="../libraries/jquery/jquery-3.6.0.min.js"
+   ></script>
+  <script src="../libraries/bootstrap/jsdelivery.bootstrap.bundle.min.js"
+   ></script>
+  <script src="../libraries/datatables/jquery.dataTables.min.js"></script>
+  <script src="../libraries/jszip.min.js"></script>
+  <script src="../libraries/pdfmake.min.js"></script>
+  <script src="../libraries/vfs_fonts.js"></script>
+  <script src="../libraries/datatables/dataTables.button.min.js"></script>
+  <script src="../libraries/datatables/buttons.html5.min.js"></script>
+  <script src="../libraries/datatables/buttons.print.min.js"></script>
+  <script src="../js/httpRequest.js"></script>
+  <script src="../js/storagedata.js"></script>
+  <script src="../js/index.js"></script>
 
 </body>
 

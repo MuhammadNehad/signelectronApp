@@ -13,17 +13,17 @@ bwindow.loadURL(`file:///${__dirname}/views/login.html`);
    bwindow.setMenu(null);
    createWindow(bwindow);
 //    autoUpdater.setFeedURL({url:"https://github.com/MuhammadNehad/signelectronApp/releases/tag/"})
-   autoUpdater.checkForUpdates();
+//    autoUpdater.checkForUpdates();
    
-   updateApp({
-       // repo: 'PhiloNL/electron-hello-world', // defaults to package.json
-       updateInterval: '5 minutes',
-       notifyUser: true
-   });
-   autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-       dialog.showOpenDialog(bwindow,{})
-       autoUpdater.quitAndInstall()
-   })
+//    updateApp({
+//        // repo: 'PhiloNL/electron-hello-world', // defaults to package.json
+//        updateInterval: '5 minutes',
+//        notifyUser: true
+//    });
+//    autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+//        dialog.showOpenDialog(bwindow,{})
+//        autoUpdater.quitAndInstall()
+//    })
 });
 app.on("window-all-closed",()=>{
     app.quit();

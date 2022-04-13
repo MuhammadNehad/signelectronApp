@@ -9,20 +9,31 @@ window.location.href="../views/index.html"
 $(()=>{
     $("#login").on('click',function (e) {
         var data ={}
-        data.empCode = $("#empCode").val() 
+        data.code = $("#empCode").val() 
         data.password = $("#password").val()
-
-        getRequest(employeesapi+`/Login/${data.empCode}/${data.password}`,function (res) {
-           console.log(res); 
-           if(res)
-           {
-           localStorage.setItem("curuser",JSON.stringify(res));
-            window.location.href="../views/index.html"
-            }else{
-                alert("failed");
-            }
-        },function (res) {
+        getRequest(employeesapi+`/Login/${data.code}/${data.password}`,function (res) {
+            console.log(res); 
+            if(res)
+            {
+            localStorage.setItem("curuser",JSON.stringify(res));
+             window.location.href="../views/index.html"
+             }else{
+                 alert("failed");
+             }
+         },function (res) {
+             
+         });
+        // postRequest(employeesapi+`/Login`,{userLogin:data},function (res) {
+        //    console.log(res); 
+        //    if(res)
+        //    {
+        //    localStorage.setItem("curuser",JSON.stringify(res));
+        //     window.location.href="../views/index.html"
+        //     }else{
+        //         alert("failed");
+        //     }
+        // },function (res) {
             
-        });
+        // });
     })
 });

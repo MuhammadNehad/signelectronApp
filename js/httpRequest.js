@@ -1,19 +1,22 @@
 var permsQuery = "";
 
+
 function getRequest(url,response,alwaysFunc,data =null) {
     $.get(url,data,function(res){
         response(res);
-    }).always(function() {
+    },"json").always(function() {
         alwaysFunc();
       })
 }
 
-function postRequest(url, data, response,alwaysFunc) {
+function postRequest(url, data, response,alwaysFunc,authenticatedata=null) {
     $.post(url, data,
         function (res) {
             response(res);
         }
-    ).always(function() {
+    ).setRequestHeader((xhr)=> {
+        xhr.setRequestHeader ("Authorization", (authenticatedata?("Basic " + window.atob(authenticatedata.username + ":" + authenticatedata.password)):null));
+    },).always(function() {
         alwaysFunc();
       })
 }

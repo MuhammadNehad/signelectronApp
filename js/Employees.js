@@ -128,70 +128,7 @@ $(() => {
         prepareEmpsTable();
         var permEmpEdit = curuser.mrole[0].roles_perms_rel.find(rpr => rpr.perm.name == "Emplyees edit")
         if (permEmpEdit) {
-            $("#editEmployee").on("click", function (params) {
-                if (edit) {
-                    var empCodev = $("#empCode").val();
-                    var emailv = $("#email").val();
-                    var empNamev = $("#empName").val();
-                    var passwordv = $("#password").val();
-                    var confirmpasswordv = $("#confirmpassword").val();
-                    var phonev = $("#phone").val();
-                    var role = $("#role").val();
-
-                    if (empCodev && empCodev.trim() <= 0
-                        && emailv && emailv.trim() <= 0 && empNamev && empNamev.trim() <= 0
-                        && phonev && phonev.trim() <= 0 && role && role.trim() <= 0 &&
-                     confirmpasswordv !=passwordv ) {
-                        alert("review data");
-
-                        return;
-                    }
-                    
-                    var user = {}
-
-                    user.id = selectedUserId;
-                    user.empCode = empCodev;
-                    user.password = passwordv;
-                    if (emailv.trim() != selectedUser.email.trim()) {
-                        user.email = emailv;
-                    }
-                    if (empNamev.trim() != selectedUser.name.trim()) {
-                        user.name = empNamev;
-                    }
-                    if (phonev.trim() != selectedUser.phone.trim()) {
-                        user.phone = phonev;
-                    }
-                    if (role != selectedUser.role) {
-                        user.role = role
-                    }
-                    if (empCodev.trim() != selectedUser.empCode.trim()) {
-                        alert("you can't change the code ");
-                        return;
-                    }
-                    checkPermission(permsapiURIQuery, 'permsNames', ['Emplyees edit'], function () {
-                        getRequest(permsapi + `/getByName` + permsapiURIQuery + permsQuery, function (res) {
-                            permsQuery = '';
-                            if (res["status"] == 200) {
-                                checkPermission(employeesapiURIQuery, 'permsid', res["permsL"], function () {
-                                    putRequest(employeesapi + `/${selectedUserId}` + employeesapiURIQuery + permsQuery, { emplyees: user }, function (res) {
-                                        $('.alert').addClass("alert-success");
-                                        $('.alert').text('employee updated');
-                                        edit = false;
-
-                                    }, function () {
-                                        permsQuery = '';
-
-                                    })
-                                })
-                            }
-                        }, function () {
-                            permsQuery = '';
-
-                        })
-                    })
-
-                }
-            })
+            $("#editEmployee").on("click",(e)=>saveChanges(e) )
         }
         $("#canceledit").on("click", function (e) {
             edit = false;
@@ -205,6 +142,96 @@ $(() => {
     }
 })
 
+
+function saveChanges(params,fromTable=false,user=null) {
+    if (edit&&!fromTable) {
+        var empCodev = $("#empCode").val();
+        var emailv = $("#email").val();
+        var empNamev = $("#empName").val();
+        var passwordv = $("#password").val();
+        var confirmpasswordv = $("#confirmpassword").val();
+        var phonev = $("#phone").val();
+        var role = $("#role").val();
+
+        if (empCodev && empCodev.trim() <= 0
+            && emailv && emailv.trim() <= 0 && empNamev && empNamev.trim() <= 0
+            && phonev && phonev.trim() <= 0 && role && role.trim() <= 0 &&
+         confirmpasswordv !=passwordv ) {
+            alert("review data");
+
+            return;
+        }
+        
+         user = {}
+
+        user.id = selectedUserId;
+        user.empCode = empCodev;
+        user.password = passwordv;
+        if (emailv.trim() != selectedUser.email.trim()) {
+            user.email = emailv;
+        }
+        if (empNamev.trim() != selectedUser.name.trim()) {
+            user.name = empNamev;
+        }
+        if (phonev.trim() != selectedUser.phone.trim()) {
+            user.phone = phonev;
+        }
+        if (role != selectedUser.role) {
+            user.role = role
+        }
+        if (empCodev.trim() != selectedUser.empCode.trim()) {
+            alert("you can't change the code ");
+            return;
+        }
+        checkPermission(permsapiURIQuery, 'permsNames', ['Emplyees edit'], function () {
+            getRequest(permsapi + `/getByName` + permsapiURIQuery + permsQuery, function (res) {
+                permsQuery = '';
+                if (res["status"] == 200) {
+                    checkPermission(employeesapiURIQuery, 'permsid', res["permsL"], function () {
+                        putRequest(employeesapi + `/${selectedUserId}` + employeesapiURIQuery + permsQuery, { emplyees: user }, function (res) {
+                            $('.alert').addClass("alert-success");
+                            $('.alert').text('employee updated');
+                            edit = false;
+
+                        }, function () {
+                            permsQuery = '';
+
+                        })
+                    })
+                }
+            }, function () {
+                permsQuery = '';
+
+            })
+        })
+
+    }else if(fromTable){
+        user.loggedIn=($("#isonline"+user.id).is(":checked")?1:0);
+        checkPermission(permsapiURIQuery, 'permsNames', ['Emplyees edit'], function () {
+            getRequest(permsapi + `/getByName` + permsapiURIQuery + permsQuery, function (res) {
+                permsQuery = '';
+                if (res["status"] == 200) {
+                    checkPermission(employeesapiURIQuery, 'permsid', res["permsL"], function () {
+                        putRequest(employeesapi + `/${user.id}` + employeesapiURIQuery + permsQuery, { emplyees: user }, function (res) {
+                            $('.alert').addClass("alert-success");
+                            $('.alert').text('employee updated');
+                            edit = false;
+
+                        }, function () {
+                            permsQuery = '';
+
+                        })
+                    })
+                }
+            }, function () {
+                permsQuery = '';
+
+            })
+        })
+
+
+    }
+}
 function prepareEmpsTable() {
     checkPermission(permsapiURIQuery, 'permsNames', ['Emplyees edit'], function () {
         getRequest(permsapi + `/getByName` + permsapiURIQuery + permsQuery, function (res) {
@@ -221,7 +248,9 @@ function prepareEmpsTable() {
                                 html += `<tr>` +
                                     `<td> ${element.empCode}</td>` +
                                     `<td> ${element.name}</td>` +
-                                    `<td> ${element.phone}</td>`
+                                    `<td> ${element.phone}</td>`+
+                                    `<td> <input type='checkbox'  name='isonline' onchange='saveChanges(null,true,${JSON.stringify({id:element.id,empCode:element.empCode})})' placeholder='isonline' id='isonline${element.id}' ${element.loggedIn==1?'checked':''}/></td>`;
+                                    
                                 var permEmpEdit = curuser.mrole[0].roles_perms_rel.find(rpr => rpr.perm.name == "Emplyees edit")
                                 if (permEmpEdit) {
 
@@ -253,34 +282,45 @@ function prepareEmpsTable() {
 }
 
 function deleteEmp(id) {
-    checkPermission(permsapiURIQuery, 'permsNames', ['Emplyees delete'], function () {
-        getRequest(permsapi + `/getByName` + permsapiURIQuery + permsQuery, function (res) {
-            permsQuery = '';
-            if (res["status"] == 200) {
-                checkPermission(employeesapiURIQuery, 'permsid', res["permsL"], function () {
-                    deleteRequest(employeesapi+"/"+id+employeesapiURIQuery+permsQuery,{},function(res){
-                      },function(){
-            permsQuery = '';
-            clearAlert();
-              $('.alert').addClass("alert-success");
-            $('.alert').text('employee deleted');
-                      })
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover his data!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then(Okay=>{
+          if(Okay)
+          {
+            checkPermission(permsapiURIQuery, 'permsNames', ['Emplyees delete'], function () {
+                getRequest(permsapi + `/getByName` + permsapiURIQuery + permsQuery, function (res) {
+                    permsQuery = '';
+                    if (res["status"] == 200) {
+                        checkPermission(employeesapiURIQuery, 'permsid', res["permsL"], function () {
+                            deleteRequest(employeesapi+"/"+id+employeesapiURIQuery+permsQuery,{},function(res){
+                            },function(){
+                    permsQuery = '';
+                    clearAlert();
+                    $('.alert').addClass("alert-success");
+                    $('.alert').text('employee deleted');
+                            })
+                            },function(res){
+                    permsQuery = '';
+
+                            })
+                        }else{
+                            alert("you can't delete employees")
+                        }
                     },function(res){
-            permsQuery = '';
+                    permsQuery = '';
 
                     })
-                }else{
-                    alert("you can't delete employees")
-                }
+            
             },function(res){
-            permsQuery = '';
+                permsQuery = '';
 
-            })
-    
-    },function(res){
-        permsQuery = '';
-
-        })
+                })
+    }
+})
 }
 function clearAlert() {
     var alertClassName = $('.alert').attr('class').split(" ").pop();

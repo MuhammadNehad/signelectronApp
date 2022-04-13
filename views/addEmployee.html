@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>employee</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
     <link rel="stylesheet" href="../css/index.css">
+     <link href="../libraries/bootstrap/jsdeliver.bootstrap.min.css" rel="stylesheet"
+      >
+    <link rel="stylesheet" href="../libraries/fontawesome_all.css" />
+    <script src="../js/SweetAlert.js"></script>
     <script src="../js/storagedata.js"></script>
     <script src="../js/url.js"></script>
 
@@ -42,11 +43,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="roles.html" id="addLocHref">roles</a>
-                  </li>
-                  <li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" id="logout">logout</a>
                 </li>
-                
+
             </ul>
 
     </nav>
@@ -58,66 +59,79 @@
             <div class="row">
                 <div class="col">
 
-                    <div class="row m-2">
-                        <label for="empCode">Employee Code*</label>
-                        <input type="text" name="empCode" class="form-control" id="empCode" required>
+                    <div class="row m-2 ">
+                        <label for="empCode" class="w-25">Employee Code*
+                            <input type="text" name="empCode" class="form-control" placeholder="Code" id="empCode"
+                                required>
+                        </label>
                     </div>
                     <div class="row m-2">
                         <div class="col">
-                            <label for="empName">Employee Name*</label>
-                            <input type="text" name="empName" class="form-control" id="empName">
+                            <label class="w-25 mx-auto">Employee Name*
+                                <input type="text" name="empName" class="form-control" placeholder="name" id="empName">
+                            </label>
                         </div>
                         <div class="col">
-                            <label for="email">email*</label>
+                            <label for="email" class="w-25 mx-auto">email*
 
-                            <input type="email" name="email" class="form-control" id="email">
+                                <input type="email" name="email" class="form-control" placeholder="email" id="email">
+                            </label>
                         </div>
                     </div>
                     <div class="row m-2">
                         <div class="col">
-                            <label for="role">role</label>
-                            <select name="role" id="role"></select>
+                            <label for="role">role
+                            <select name="role" class="form-control"  id="role">
+                                <option value="">Select Role:</option>
+                            </select></label>
                         </div>
                     </div>
                     <div class="row m-2">
                         <div class="col">
-                            <label for="password">password*</label>
-                            <input type="password" name="password" class="form-control" id="password">
+                            <label for="password" class="w-25 mx-auto">password*
+                            <input type="password" name="password" class="form-control" placeholder="password" id="password"></label>
                         </div>
                         <div class="col">
-                            <label for="empCode">confirm password*</label>
+                            <label for="empCode" class="w-25 mx-auto">confirm password*
 
-                            <input type="password" name="confirmpassword" class="form-control" id="confirmpassword">
+                            <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm-Password" id="confirmpassword"></label>
                         </div>
                     </div>
                     <div class="row m-2">
-                        <label for="empCode">phone*</label>
+                        <label for="phone" class="w-25">phone*
 
-                        <input type="tel" name="phone" class="form-control" id="phone">
-                    </div>
+                        <input type="tel" name="phone" class="form-control" placeholder="phone" id="phone">
+                 </label>
+                </div>
                     <div class="row m-2">
                         <button type="submit" class="btn btn-outline-info" id="addEmployee">Add</button>
-                       <div class="row edit-control d-none">
-                        <button type="submit" class="btn btn-outline-info" id="editEmployee">Edit</button>
-                        <button type="submit" class="btn btn-outline-danger" id="canceledit">cancel</button>
-                    
-                    </div>
+                        <div class="row edit-control d-none">
+                            <button type="submit" class="btn btn-outline-info" id="editEmployee">Edit</button>
+                            <button type="submit" class="btn btn-outline-danger" id="canceledit">cancel</button>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <table class="table bg-white" id="empsTable">
-            <thead><tr><td>Code</td><td>name</td><td>phone</td></tr></thead>
+            <thead>
+                <tr>
+                    <td>Code</td>
+                    <td>name</td>
+                    <td>phone</td>
+                    <td class="text-center">online</td>
+                </tr>
+            </thead>
             <tbody></tbody>
         </table>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
-        <script src="../js/httpRequest.js"></script>
-        <script src="../js/Employees.js"></script>
+    <script src="../libraries/jquery/jquery-3.6.0.min.js"
+    ></script>
+   <script src="../libraries/bootstrap/jsdelivery.bootstrap.bundle.min.js"
+    ></script>
+    <script src="../js/httpRequest.js"></script>
+    <script src="../js/Employees.js"></script>
 
     <script>
 

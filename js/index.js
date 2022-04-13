@@ -1,3 +1,4 @@
+
 const empsView = document.querySelector("#employeesTable");
 const empsViewbody = document.querySelector("#eTBody");
 var empId = curuser.id;

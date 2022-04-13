@@ -257,7 +257,7 @@ $(function(){
     //       var fromlng = $("#fromLoc option:selected").attr('data-lng');
     //       var toLat = $("#toLoc option:selected").attr('data-lat');
     //       var tolng = $("#toLoc option:selected").attr('data-lng');
-    //       getRequest(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${fromLat}%2C${fromlng}&destinations=${toLat}%2C${tolng}&key=`,function(e){
+    //       getRequest(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${fromLat}%2C${fromlng}&destinations=${toLat}%2C${tolng}&key=AIzaSyBFgjMLkA2B4yScIXGgiz3q-bUBVDK-f5o`,function(e){
     //         var duration = e['rows'][0]['elements'][0]['duration']['text'];
     //         $("#duration").html(duration)
     //         var options  ={

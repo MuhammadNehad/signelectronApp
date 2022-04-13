@@ -106,3 +106,9 @@
     height: calc(100vh/2);
   }
 }
+
+input{
+  margin: 2px !important;
+
+
+}
